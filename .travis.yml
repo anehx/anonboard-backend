@@ -10,6 +10,5 @@ install: "pip install -r requirements.txt"
 
 before_script:
     - psql -c "CREATE ROLE anonboard LOGIN PASSWORD 'anonboard';" -U postgres
-    - psql -c "CREATE DATABASE test_anonboard;" -U postgres
 
 script: "python manage.py test"

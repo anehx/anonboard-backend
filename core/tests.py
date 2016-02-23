@@ -10,7 +10,7 @@ class TopicTests(TestBase):
         self.Baz = Topic.objects.create(name='Baz')
 
     def test_to_str(self):
-        self.assertEqual(str(self.Foo), 'Foo')
+        self.assertEqual(str(self.Foo), self.Foo.name)
 
     def test_get_topic_list(self):
         response = self.client.japi_get('/api/v1/topics/')

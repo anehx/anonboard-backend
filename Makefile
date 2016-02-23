@@ -2,7 +2,8 @@ install:
 	@pip install -r requirements.txt
 
 test:
-	@python manage.py test --keepdb
+	@coverage run manage.py test --keepdb
+	@coverage report
 
 migrate:
 	@python manage.py migrate

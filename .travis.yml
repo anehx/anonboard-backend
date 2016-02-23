@@ -9,7 +9,7 @@ services:
 install: make install
 
 before_script:
-    - psql -c "CREATE ROLE anonboard PASSWORD 'anonboard';" -U postgres
+    - psql -c "CREATE ROLE anonboard LOGIN PASSWORD 'anonboard';" -U postgres
     - psql -c "CREATE DATABASE anonboard;" -U postgres
     - make migrate
 

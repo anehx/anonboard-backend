@@ -9,6 +9,8 @@ class TopicTests(TestBase):
         self.Bar = Topic.objects.create(name='Bar')
         self.Baz = Topic.objects.create(name='Baz')
 
+    def test_to_str(self):
+        self.assertEqual(str(self.Foo), 'Foo')
 
     def test_get_topic_list(self):
         response = self.client.japi_get('/api/v1/topics/')
@@ -20,9 +22,10 @@ class TopicTests(TestBase):
 
 
     def test_get_topic(self):
-        response = self.client.japi_get('/api/v1/topics/%i' % self.Foo.id)
+        response = self.client.japi_get('/api/v1/topics/%i' % self.Bar.id)
 
         result = self.result(response)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(result['data']['attributes']['name'], 'Foo')
+        self.assertEqual(result['data']['attributes']['name'], 'Bar')
+        self.assertEqual(result['data']['attributes']['description'], '')

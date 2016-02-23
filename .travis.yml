@@ -6,7 +6,7 @@ python:
 services:
     - postgresql
 
-install: "pip install -r requirement.txt"
+install: "pip install -r requirements.txt"
 
 before_script:
     - psql -c "CREATE ROLE anonboard LOGIN PASSWORD 'anonboard';" -U postgres

@@ -1,9 +1,16 @@
 language: python
 
 python:
-  - "3.4"
   - "3.5"
 
-install: "pip install -r requirements.txt"
+services:
+    - postgresql
+
+install: make install
+
+before_script:
+    – psql -c 'create role anonboard with password anonboard;' -U postgres
+    – psql -c 'create database anonboard;' -U postgres
+    – make migrate
 
 script: make test

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'core',
+    'user',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,6 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.json_api_filter.CleanUpMiddleware',
+    'user.middleware.AnonboardUserMiddleware',
 ]
 
 ROOT_URLCONF = 'anonboard.urls'

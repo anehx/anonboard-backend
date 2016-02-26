@@ -1,7 +1,7 @@
 from django.test     import TestCase
 from mock            import Mock
-from user.models     import User
 from user.middleware import AnonboardUserMiddleware
+from user.models     import User
 
 class AnonboardUserMiddlewareTest(TestCase):
 

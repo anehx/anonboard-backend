@@ -52,7 +52,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'middleware.json_api_filter.CleanUpMiddleware',
+    'jsonapi.middleware.FilterMiddleware',
     'user.middleware.AnonboardUserMiddleware',
 ]
 

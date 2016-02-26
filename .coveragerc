@@ -1,5 +1,5 @@
 [run]
-source=core,user
+source=core,user,jsonapi
 
 [report]
 omit=*/migrations/*.py

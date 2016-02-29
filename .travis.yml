@@ -5,16 +5,22 @@ python:
   - "3.5"
 
 services:
-    - postgresql
+  - postgresql
+
+cache: pip
 
 install:
-    - make install
-    - pip install coveralls
+  - make install
+  - pip install coveralls
 
 before_script:
-    - psql -c "CREATE ROLE anonboard LOGIN PASSWORD 'anonboard';" -U postgres
-    - psql -c "CREATE DATABASE test_anonboard;" -U postgres
+  - psql -c "CREATE ROLE anonboard LOGIN PASSWORD 'anonboard';" -U postgres
+  - psql -c "CREATE DATABASE test_anonboard;" -U postgres
 
 script: make test
 
 after_success: coveralls
+
+notifications:
+  email:
+    - jonasmetzener@gmail.com

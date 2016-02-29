@@ -1,16 +1,13 @@
 from core.models           import Topic
 from anonboard.test_helper import TestBase
 
-class TopicTests(TestBase):
+class TopicAPITests(TestBase):
     def setUp(self):
-        super(TopicTests, self).setUp()
+        super(TopicAPITests, self).setUp()
 
         self.Foo = Topic.objects.create(name='Foo')
         self.Bar = Topic.objects.create(name='Bar')
         self.Baz = Topic.objects.create(name='Baz')
-
-    def test_to_str(self):
-        self.assertEqual(str(self.Foo), self.Foo.name)
 
     def test_get_topic_list(self):
         response = self.client.japi_get('/api/v1/topics/')

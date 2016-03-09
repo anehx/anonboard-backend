@@ -2,4 +2,4 @@
 source=core,user,jsonapi
 
 [report]
-omit=*/migrations/*.py
+omit=*/migrations/*.py,*/tests/*.py

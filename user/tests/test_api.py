@@ -16,7 +16,7 @@ class UserAPITests(JSONAPITestCase):
             user.delete()
 
     def test_get_user_list(self):
-        response = self.client.japi_get('/api/v1/users/')
+        response = self.client.get('/api/v1/users/')
 
         result = self.result(response)
 
@@ -28,7 +28,7 @@ class UserAPITests(JSONAPITestCase):
         self.assertEqual(len(result['data']), len(self.users) + 1)
 
     def test_get_user(self):
-        response = self.client.japi_get('/api/v1/users/%i' % self.users[0].id)
+        response = self.client.get('/api/v1/users/%i' % self.users[0].id)
 
         result = self.result(response)
 

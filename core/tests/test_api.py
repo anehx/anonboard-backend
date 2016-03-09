@@ -105,7 +105,7 @@ class ThreadAPITests(JSONAPITestCase):
             }
         }
 
-        response = self.client.japi_post('/api/v1/threads/', data)
+        response = self.client.post('/api/v1/threads/', data)
 
         result = self.result(response)
 
@@ -175,7 +175,7 @@ class CommentAPITests(JSONAPITestCase):
             }
         }
 
-        response = self.client.japi_post('/api/v1/comments/', data)
+        response = self.client.post('/api/v1/comments/', data)
 
         result = self.result(response)
 

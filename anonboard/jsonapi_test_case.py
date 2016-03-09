@@ -5,38 +5,43 @@ import json
 
 class JSONAPIClient(APIClient):
 
+    def __init__(self, *args, **kwargs):
+        super(JSONAPIClient, self).__init__(*args, **kwargs)
+
+        self._content_type = 'application/vnd.api+json'
+
     def _parse_data(self, data):
         return json.dumps(data) if data else data
 
-    def japi_get(self, path, data=None, **extra):
+    def get(self, path, data=None, **extra):
         return super(JSONAPIClient, self).get(
             path=path,
             data=self._parse_data(data),
-            content_type='application/vnd.api+json',
+            content_type=self._content_type,
             **extra
         )
 
-    def japi_post(self, path, data=None, **extra):
+    def post(self, path, data=None, **extra):
         return super(JSONAPIClient, self).post(
             path=path,
             data=self._parse_data(data),
-            content_type='application/vnd.api+json',
+            content_type=self._content_type,
             **extra
         )
 
-    def japi_delete(self, path, data=None, **extra):
+    def delete(self, path, data=None, **extra):
         return super(JSONAPIClient, self).delete(
             path=path,
             data=self._parse_data(data),
-            content_type='application/vnd.api+json',
+            content_type=self._content_type,
             **extra
         )
 
-    def japi_patch(self, path, data=None, **extra):
+    def patch(self, path, data=None, **extra):
         return super(JSONAPIClient, self).patch(
             path=path,
             data=self._parse_data(data),
-            content_type='application/vnd.api+json',
+            content_type=self._content_type,
             **extra
         )
 

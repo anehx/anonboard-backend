@@ -1,5 +1,3 @@
-import unittest
-
 from anonboard.jsonapi_test_case import JSONAPITestCase
 from core                        import factories
 
@@ -86,31 +84,42 @@ class ThreadAPITests(JSONAPITestCase):
             self.threads[0].content
         )
 
-    @unittest.skip('Not implemented yet')
     def test_post_thread(self):
+        topic = factories.TopicFactory.create()
+
         data = {
             'data': {
                 'type': 'threads',
                 'attributes': {
                     'title': 'Foo',
-                    'content': 'Foo'
+                    'content': 'Bar'
                 },
                 'relationships': {
                     'topic': {
                         'data': {
-                            'type': 'topic',
-                            'id': 1
+                            'type': 'topics',
+                            'id': topic.id
                         }
                     }
                 }
             }
         }
 
-        response = self.client.post('/api/v1/threads/', data, format='json')
+        response = self.client.japi_post('/api/v1/threads/', data)
 
-        # result = self.result(response)
+        result = self.result(response)
 
         self.assertEqual(response.status_code, 201)
+
+        self.assertEqual(
+            result['data']['attributes']['title'],
+            data['data']['attributes']['title']
+        )
+
+        self.assertEqual(
+            result['data']['attributes']['content'],
+            data['data']['attributes']['content']
+        )
 
 
 class CommentAPITests(JSONAPITestCase):
@@ -144,4 +153,35 @@ class CommentAPITests(JSONAPITestCase):
         self.assertEqual(
             result['data']['attributes']['content'],
             self.comments[0].content
+        )
+
+    def test_comment_thread(self):
+        thread = factories.ThreadFactory.create()
+
+        data = {
+            'data': {
+                'type': 'comments',
+                'attributes': {
+                    'content': 'Bar'
+                },
+                'relationships': {
+                    'thread': {
+                        'data': {
+                            'type': 'threads',
+                            'id': thread.id
+                        }
+                    }
+                }
+            }
+        }
+
+        response = self.client.japi_post('/api/v1/comments/', data)
+
+        result = self.result(response)
+
+        self.assertEqual(response.status_code, 201)
+
+        self.assertEqual(
+            result['data']['attributes']['content'],
+            data['data']['attributes']['content']
         )

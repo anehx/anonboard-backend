@@ -2,6 +2,7 @@ from django.test import TestCase
 from mock        import Mock
 from user        import factories, models, middleware
 
+
 class AnonboardUserMiddlewareTest(TestCase):
 
     def setUp(self):
@@ -28,7 +29,7 @@ class AnonboardUserMiddlewareTest(TestCase):
     def test_create_user(self):
         self.request.META = {
             'REMOTE_ADDR':     '127.0.0.1',
-            'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0'
+            'HTTP_USER_AGENT': 'Mozilla/5.0 (X11; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0'  # noqa
         }
 
         self.assertIsNone(self.middleware.process_request(self.request))

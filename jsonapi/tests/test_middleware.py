@@ -2,6 +2,7 @@ from django.test        import TestCase
 from jsonapi.middleware import FilterMiddleware
 from mock               import Mock
 
+
 class FilterMiddlewareTest(TestCase):
 
     def setUp(self):

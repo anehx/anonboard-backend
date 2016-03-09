@@ -12,7 +12,7 @@ test-coverage:
 	@coverage report
 
 test-lint:
-	@flake8 **/*.py
+	@flake8
 
 start-db:
 	@docker-compose up -d db

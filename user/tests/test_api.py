@@ -1,6 +1,7 @@
 from anonboard.jsonapi_test_case import JSONAPITestCase
 from user                        import factories
 
+
 class UserAPITests(JSONAPITestCase):
 
     def setUp(self):
@@ -26,7 +27,6 @@ class UserAPITests(JSONAPITestCase):
         # first request
         self.assertEqual(len(result['data']), len(self.users) + 1)
 
-
     def test_get_user(self):
         response = self.client.japi_get('/api/v1/users/%i' % self.users[0].id)
 
@@ -34,5 +34,9 @@ class UserAPITests(JSONAPITestCase):
 
         self.assertEqual(response.status_code, 200)
 
-        self.assertEqual(result['data']['attributes']['identifier'],  self.users[0].identifier)
         self.assertEqual(len(result['data']['attributes']), 1)
+
+        self.assertEqual(
+            result['data']['attributes']['identifier'],
+            self.users[0].identifier
+        )

@@ -1,6 +1,7 @@
 from django.test import TestCase
 from user        import factories
 
+
 class UserModelTest(TestCase):
 
     def setUp(self):

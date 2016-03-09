@@ -1,12 +1,18 @@
-install:
-	@pip install -r requirements.txt
+.PHONY: install, test, test-coverage, test-lint, start-db, start
 
-test:
+install:
+	@echo 'Installing pip packages...'
+	@pip install -r requirements.txt > /dev/null
+	@echo 'Done!'
+
+test: test-lint test-coverage
+
+test-coverage:
 	@coverage run manage.py test --keepdb
 	@coverage report
 
-migrate:
-	@python manage.py migrate
+test-lint:
+	@flake8 **/*.py
 
 start-db:
 	@docker-compose up -d db

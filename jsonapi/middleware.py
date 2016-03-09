@@ -1,5 +1,6 @@
 import re
 
+
 class FilterMiddleware(object):
     def process_request(self, request):
         request.GET = request.GET.copy()

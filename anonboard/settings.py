@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework_json_api',
     'crispy_forms',
     'core',
     'user',
@@ -97,16 +96,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 
@@ -136,7 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
     ),
-    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',
+    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',  # noqa
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework_json_api.parsers.JSONParser',
         'rest_framework.parsers.MultiPartParser',
@@ -145,7 +144,7 @@ REST_FRAMEWORK = {
         'rest_framework_json_api.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
+    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',  # noqa
 }
 
 JSON_API_FORMAT_RELATION_KEYS = 'dasherize'

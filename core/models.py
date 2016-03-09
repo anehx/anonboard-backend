@@ -35,7 +35,10 @@ class Comment(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return 'Comment from %s to thread %s' % (str(self.user), str(self.thread))
+        return 'Comment from %s to thread %s' % (
+            str(self.user),
+            str(self.thread)
+        )
 
     class Meta:
         ordering = [ 'created' ]

@@ -8,10 +8,10 @@ install:
 start-db:
 	@docker-compose start db
 
-start: start-db
+start:
 	@python manage.py runserver
 
-test-coverage: start-db
+test-coverage:
 	@coverage run manage.py test --keepdb
 	@coverage report
 

@@ -16,7 +16,7 @@ class Topic(models.Model):
 
 class Thread(models.Model):
     user    = models.ForeignKey(User)
-    topic   = models.ForeignKey(Topic)
+    topic   = models.ForeignKey(Topic, related_name='threads')
     title   = models.CharField(max_length=50)
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -30,7 +30,7 @@ class Thread(models.Model):
 
 class Comment(models.Model):
     user    = models.ForeignKey(User)
-    thread  = models.ForeignKey(Thread)
+    thread  = models.ForeignKey(Thread, related_name='comments')
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 

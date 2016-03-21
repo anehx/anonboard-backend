@@ -6,6 +6,11 @@ from user.serializers        import UserSerializer
 
 
 class TopicSerializer(serializers.ModelSerializer):
+    threads = relations.ResourceRelatedField(
+        read_only=True,
+        many=True
+    )
+
     class Meta:
         model = models.Topic
 
@@ -20,9 +25,10 @@ class ThreadSerializer(serializers.ModelSerializer):
         queryset=models.Topic.objects.all()
     )
 
-    included_serializers = {
-        'user': UserSerializer
-    }
+    comments = relations.ResourceRelatedField(
+        read_only=True,
+        many=True
+    )
 
     class Meta:
         model = models.Thread
@@ -38,10 +44,21 @@ class CommentSerializer(serializers.ModelSerializer):
         queryset=models.Thread.objects.all()
     )
 
-    included_serializers = {
-        'user':   UserSerializer,
-        'thread': ThreadSerializer
-    }
-
     class Meta:
         model = models.Comment
+
+
+TopicSerializer.included_serializers = {
+    'threads': ThreadSerializer
+}
+
+ThreadSerializer.included_serializers = {
+    'user':     UserSerializer,
+    'topic':    TopicSerializer,
+    'comments': CommentSerializer
+}
+
+CommentSerializer.included_serializers = {
+    'user':     UserSerializer,
+    'thread':   ThreadSerializer
+}

@@ -1,17 +1,24 @@
-from django.db   import models
-from user.models import User
+from django.db            import models
+from user.models          import User
+from adminsortable.models import SortableMixin
 
 
-class Topic(models.Model):
+class Topic(SortableMixin):
     name        = models.CharField(max_length=50, unique=True)
     identifier  = models.SlugField(max_length=50, unique=True)
     description = models.CharField(max_length=255)
+
+    order = models.PositiveIntegerField(
+        default=0,
+        editable=False,
+        db_index=True
+    )
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = [ 'name' ]
+        ordering = [ 'order' ]
 
 
 class Thread(models.Model):

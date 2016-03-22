@@ -3,7 +3,7 @@ from django.conf.urls import url
 from core import views
 
 urlpatterns = [
-    url(r'^topics/$', views.TopicView.as_view(
+    url(r'^topics/?$', views.TopicView.as_view(
         { 'get': 'list' }
     ), name='topic-list'),
 
@@ -11,7 +11,7 @@ urlpatterns = [
         { 'get': 'retrieve' }
     ), name='topic'),
 
-    url(r'^threads/$', views.ThreadView.as_view(
+    url(r'^threads/?$', views.ThreadView.as_view(
         { 'get': 'list', 'post': 'create' }
     ), name='thread-list'),
 
@@ -19,7 +19,7 @@ urlpatterns = [
         { 'get': 'retrieve' }
     ), name='thread'),
 
-    url(r'^comments/$', views.CommentView.as_view(
+    url(r'^comments/?$', views.CommentView.as_view(
         { 'get': 'list', 'post': 'create' }
     ), name='comment-list'),
 

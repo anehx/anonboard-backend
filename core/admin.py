@@ -1,17 +1,17 @@
-from django.contrib import admin
-
-from core import models
+from django.contrib      import admin
+from core                import models
+from adminsortable.admin import SortableAdmin
 
 
 @admin.register(models.Topic)
-class TopicAdmin(admin.ModelAdmin):
+class TopicAdmin(SortableAdmin):
     list_display        = [ 'name', 'identifier' ]
     prepopulated_fields = { 'identifier': ( 'name', ) }
 
 
 @admin.register(models.Thread)
 class ThreadAdmin(admin.ModelAdmin):
-    list_display = [ 'title' ]
+    list_display = [ 'title', 'topic' ]
 
 
 @admin.register(models.Comment)

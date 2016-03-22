@@ -18,6 +18,7 @@ class TopicSerializer(serializers.ModelSerializer):
 class ThreadSerializer(serializers.ModelSerializer):
     user = relations.ResourceRelatedField(
         queryset=User.objects.all(),
+        allow_null=True,
         required=False
     )
 
@@ -37,6 +38,7 @@ class ThreadSerializer(serializers.ModelSerializer):
 class CommentSerializer(serializers.ModelSerializer):
     user = relations.ResourceRelatedField(
         queryset=User.objects.all(),
+        allow_null=True,
         required=False
     )
 

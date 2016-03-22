@@ -95,6 +95,9 @@ class ThreadAPITests(JSONAPITestCase):
                     'content': 'Bar'
                 },
                 'relationships': {
+                    'user': {
+                        'data': None
+                    },
                     'topic': {
                         'data': {
                             'type': 'topics',
@@ -165,6 +168,9 @@ class CommentAPITests(JSONAPITestCase):
                     'content': 'Bar'
                 },
                 'relationships': {
+                    'user': {
+                        'data': None
+                    },
                     'thread': {
                         'data': {
                             'type': 'threads',

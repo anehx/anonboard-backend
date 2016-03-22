@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'crispy_forms',
+    'adminsortable',
     'core',
     'user',
 ]
@@ -54,6 +55,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'jsonapi.middleware.FilterMiddleware',
     'user.middleware.AnonboardUserMiddleware',
+    'anonboard.middleware.DisableCSRFMiddleware',
 ]
 
 ROOT_URLCONF = 'anonboard.urls'
@@ -131,20 +133,27 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
+    'PAGINATE_BY': None,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'MAX_PAGINATE_BY': 100,
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
     ),
-    'EXCEPTION_HANDLER': 'rest_framework_json_api.exceptions.exception_handler',  # noqa
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework_json_api.parsers.JSONParser',
         'rest_framework.parsers.MultiPartParser',
     ),
+    'DEFAULT_METADATA_CLASS':
+        'rest_framework_json_api.metadata.JSONAPIMetadata',
+    'EXCEPTION_HANDLER':
+        'rest_framework_json_api.exceptions.exception_handler',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework_json_api.pagination.PageNumberPagination',
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework_json_api.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ),
-    'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',  # noqa
 }
 
 JSON_API_FORMAT_RELATION_KEYS = 'dasherize'

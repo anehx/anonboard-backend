@@ -32,7 +32,7 @@ class Thread(models.Model):
         return self.title
 
     class Meta:
-        ordering = [ 'created' ]
+        ordering = [ '-created' ]
 
 
 class Comment(models.Model):
@@ -48,4 +48,4 @@ class Comment(models.Model):
         )
 
     class Meta:
-        ordering = [ 'created' ]
+        ordering = [ '-created' ]

@@ -11,6 +11,9 @@ start-db:
 start:
 	@python manage.py runserver
 
+start-venv: start-db
+	@source env/bin/activate; make start
+
 test-coverage:
 	@coverage run manage.py test --keepdb
 	@coverage report

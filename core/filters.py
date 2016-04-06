@@ -1,21 +1,47 @@
-import django_filters
+from django_filters import FilterSet
+from core           import models
 
-from core import models
 
-
-class TopicFilter(django_filters.FilterSet):
+class TopicFilter(FilterSet):
+    '''
+    Class for filtering the topics
+    '''
     class Meta:
+        '''
+        Meta options for topic filter
+
+        Defines the model and its attributes
+        which are available for filtering
+        '''
         model  = models.Topic
         fields = [ 'identifier' ]
 
 
-class ThreadFilter(django_filters.FilterSet):
+class ThreadFilter(FilterSet):
+    '''
+    Class for filtering the threads
+    '''
     class Meta:
+        '''
+        Meta options for thread filter
+
+        Defines the model and its attributes
+        which are available for filtering
+        '''
         model  = models.Thread
         fields = [ 'topic', 'id' ]
 
 
-class CommentFilter(django_filters.FilterSet):
+class CommentFilter(FilterSet):
+    '''
+    Class for filtering the comments
+    '''
     class Meta:
+        '''
+        Meta options for comment filter
+
+        Defines the model and its attributes
+        which are available for filtering
+        '''
         model  = models.Comment
         fields = [ 'thread' ]

@@ -1,5 +1,6 @@
-from django.test import TestCase
-from core        import factories
+from django.test  import TestCase
+from django.utils import timezone
+from core         import factories
 
 
 class TopicModelTests(TestCase):
@@ -14,7 +15,26 @@ class TopicModelTests(TestCase):
 
         self.topic.delete()
 
-    def test_to_str(self):
+    def test_threads_last_day(self):
+        invalid_threads = factories.ThreadFactory.create_batch(
+            size=5,
+            topic=self.topic
+        )
+
+        valid_threads = factories.ThreadFactory.create_batch(
+            size=5,
+            topic=self.topic
+        )
+
+        two_days_ago = timezone.now() - timezone.timedelta(days=2)
+
+        for thread in invalid_threads:
+            thread.created = two_days_ago
+            thread.save()
+
+        self.assertEqual(self.topic.threads_last_day, len(valid_threads))
+
+    def test_to_string(self):
         self.assertEqual(str(self.topic), self.topic.name)
 
 
@@ -30,7 +50,7 @@ class ThreadModelTests(TestCase):
 
         self.thread.delete()
 
-    def test_to_str(self):
+    def test_to_string(self):
         self.assertEqual(str(self.thread), self.thread.title)
 
 
@@ -46,7 +66,7 @@ class CommentModelTests(TestCase):
 
         self.comment.delete()
 
-    def test_to_str(self):
+    def test_to_string(self):
         self.assertEqual(
             str(self.comment),
             'Comment from %s to thread %s' % (

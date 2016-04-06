@@ -17,16 +17,14 @@ class TopicAPITests(JSONAPITestCase):
 
     def test_get_topic_list(self):
         response = self.client.get('/api/v1/topics/')
-
-        result = self.result(response)
+        result   = self.result(response)
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(result['data']), len(self.topics))
 
     def test_get_topic(self):
         response = self.client.get('/api/v1/topics/%i' % self.topics[0].id)
-
-        result = self.result(response)
+        result   = self.result(response)
 
         self.assertEqual(response.status_code, 200)
 
@@ -43,6 +41,20 @@ class TopicAPITests(JSONAPITestCase):
         self.assertEqual(
             result['data']['attributes']['description'],
             self.topics[0].description
+        )
+
+    def test_get_topic_thread_last_day(self):
+        threads = factories.ThreadFactory.create_batch(
+            size=10,
+            topic=self.topics[0]
+        )
+
+        response = self.client.get('/api/v1/topics/%i' % self.topics[0].id)
+        result   = self.result(response)
+
+        self.assertEqual(
+            result['data']['attributes']['threads-last-day'],
+            len(threads)
         )
 
 

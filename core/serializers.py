@@ -6,16 +6,54 @@ from user.serializers        import UserSerializer
 
 
 class TopicSerializer(serializers.ModelSerializer):
+    '''
+    Serializer to define how to represent
+    topics in the API
+    '''
+    class Meta:
+        '''
+        Meta options for topic serializer
+
+        Defines which model to represent and
+        which fields to display
+        '''
+        model  = models.Topic
+        fields = (
+            'name',
+            'identifier',
+            'description',
+            'threads_last_day',
+            'threads',
+        )
+
     threads = relations.ResourceRelatedField(
         read_only=True,
         many=True
     )
 
-    class Meta:
-        model = models.Topic
-
 
 class ThreadSerializer(serializers.ModelSerializer):
+    '''
+    Serializer to define how to represent
+    threads in the API
+    '''
+    class Meta:
+        '''
+        Meta options for thread serializer
+
+        Defines which model to represent and
+        which fields to display
+        '''
+        model  = models.Thread
+        fields = (
+            'title',
+            'content',
+            'created',
+            'user',
+            'topic',
+            'comments',
+        )
+
     user = relations.ResourceRelatedField(
         queryset=User.objects.all(),
         allow_null=True,
@@ -31,11 +69,27 @@ class ThreadSerializer(serializers.ModelSerializer):
         many=True
     )
 
-    class Meta:
-        model = models.Thread
-
 
 class CommentSerializer(serializers.ModelSerializer):
+    '''
+    Serializer to define how to represent
+    comments in the API
+    '''
+    class Meta:
+        '''
+        Meta options for comment serializer
+
+        Defines which model to represent and
+        which fields to display
+        '''
+        model  = models.Comment
+        fields = (
+            'content',
+            'created',
+            'user',
+            'thread',
+        )
+
     user = relations.ResourceRelatedField(
         queryset=User.objects.all(),
         allow_null=True,
@@ -45,9 +99,6 @@ class CommentSerializer(serializers.ModelSerializer):
     thread = relations.ResourceRelatedField(
         queryset=models.Thread.objects.all()
     )
-
-    class Meta:
-        model = models.Comment
 
 
 TopicSerializer.included_serializers = {

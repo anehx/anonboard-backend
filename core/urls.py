@@ -1,6 +1,5 @@
 from django.conf.urls import url
-
-from core import views
+from core             import views
 
 urlpatterns = [
     url(r'^topics/?$', views.TopicView.as_view(

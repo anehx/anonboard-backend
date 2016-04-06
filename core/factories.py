@@ -5,30 +5,52 @@ from user.factories import UserFactory
 
 
 class TopicFactory(factory.django.DjangoModelFactory):
+    '''
+    Factory for generating test topics
+    '''
+    class Meta:
+        '''
+        Meta options for the thread factory
+
+        Defines the django model to generate
+        '''
+        model = models.Topic
+
     name        = factory.Faker('text', max_nb_chars=50)
     identifier  = factory.Faker('slug')
     description = factory.Faker('sentence')
 
-    class Meta:
-        model = models.Topic
-
 
 class ThreadFactory(factory.django.DjangoModelFactory):
+    '''
+    Factory for generating test threads
+    '''
+    class Meta:
+        '''
+        Meta options for the comment factory
+
+        Defines the django model to generate
+        '''
+        model = models.Thread
+
     user    = factory.SubFactory(UserFactory)
     topic   = factory.SubFactory(TopicFactory)
     title   = factory.Faker('text', max_nb_chars=50)
     content = factory.Faker('text')
-    created = factory.Faker('date_time')
-
-    class Meta:
-        model = models.Thread
 
 
 class CommentFactory(factory.django.DjangoModelFactory):
+    '''
+    Factory for generating test comments
+    '''
+    class Meta:
+        '''
+        Meta options for the comment factory
+
+        Defines the django model to generate
+        '''
+        model = models.Comment
+
     user    = factory.SubFactory(UserFactory)
     thread  = factory.SubFactory(ThreadFactory)
     content = factory.Faker('text')
-    created = factory.Faker('date_time')
-
-    class Meta:
-        model = models.Comment

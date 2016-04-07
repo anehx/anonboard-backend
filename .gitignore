@@ -60,6 +60,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-
-# SQLite3 db
-*.sqlite3

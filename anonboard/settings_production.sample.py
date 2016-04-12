@@ -1,8 +1,8 @@
-import * from settings
+from settings import *
 
 DEBUG = False
 
-STATIC_ROOT = '/var/www/anonboard/django-static/'
+STATIC_ROOT = '/var/www/anonboard/django-static/static'
 
 DATABASES = {
     'default': {

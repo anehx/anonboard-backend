@@ -93,10 +93,11 @@ class Comment(models.Model):
         '''
         ordering = [ '-created' ]
 
-    user    = models.ForeignKey(User)
-    thread  = models.ForeignKey(Thread, related_name='comments')
-    content = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+    user       = models.ForeignKey(User)
+    thread     = models.ForeignKey(Thread, related_name='comments')
+    content    = models.TextField()
+    created    = models.DateTimeField(auto_now_add=True)
+    referenced = models.ManyToManyField('Comment', null=True, blank=True)
 
     def __str__(self):
         '''

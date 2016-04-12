@@ -88,6 +88,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'created',
             'user',
             'thread',
+            'referenced',
         )
 
     user = relations.ResourceRelatedField(
@@ -98,6 +99,11 @@ class CommentSerializer(serializers.ModelSerializer):
 
     thread = relations.ResourceRelatedField(
         queryset=models.Thread.objects.all()
+    )
+
+    referenced = relations.ResourceRelatedField(
+        queryset=models.Comment.objects.all(),
+        many=True
     )
 
 

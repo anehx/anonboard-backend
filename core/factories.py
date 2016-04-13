@@ -16,8 +16,8 @@ class TopicFactory(factory.django.DjangoModelFactory):
         '''
         model = models.Topic
 
-    name        = factory.Faker('text', max_nb_chars=50)
-    identifier  = factory.Faker('slug')
+    name        = factory.Faker('uuid4')
+    identifier  = factory.Faker('uuid4')
     description = factory.Faker('sentence')
 
 

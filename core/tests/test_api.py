@@ -188,6 +188,9 @@ class CommentAPITests(JSONAPITestCase):
                             'type': 'threads',
                             'id': thread.id
                         }
+                    },
+                    'referenced': {
+                        'data': []
                     }
                 }
             }

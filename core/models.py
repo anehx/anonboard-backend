@@ -97,7 +97,7 @@ class Comment(models.Model):
     thread     = models.ForeignKey(Thread, related_name='comments')
     content    = models.TextField()
     created    = models.DateTimeField(auto_now_add=True)
-    referenced = models.ManyToManyField('Comment', null=True, blank=True)
+    referenced = models.ManyToManyField('Comment', blank=True)
 
     def __str__(self):
         '''

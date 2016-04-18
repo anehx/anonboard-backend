@@ -91,7 +91,7 @@ class Comment(models.Model):
 
         Defines the default ordering
         '''
-        ordering = [ '-created' ]
+        ordering = [ 'created' ]
 
     user       = models.ForeignKey(User)
     thread     = models.ForeignKey(Thread, related_name='comments')

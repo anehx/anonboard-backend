@@ -1,4 +1,4 @@
-.PHONY: install, start-db, start, test-coverage, test-lint, test
+.PHONY: install start-db run test-coverage test-lint test
 
 install:
 	@echo 'Installing pip packages...'
@@ -8,11 +8,8 @@ install:
 start-db:
 	@docker-compose start db
 
-start:
-	@python manage.py runserver
-
-start-venv: start-db
-	@source env/bin/activate; make start
+run: start-db
+	@source env/bin/activate; python manage.py runserver
 
 test-coverage:
 	@coverage run manage.py test --keepdb

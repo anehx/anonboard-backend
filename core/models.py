@@ -66,7 +66,7 @@ class Thread(models.Model):
     user    = models.ForeignKey(User)
     topic   = models.ForeignKey(Topic, related_name='threads')
     title   = models.CharField(max_length=50)
-    content = models.TextField()
+    content = models.CharField(max_length=140)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

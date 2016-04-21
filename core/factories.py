@@ -36,7 +36,7 @@ class ThreadFactory(factory.django.DjangoModelFactory):
     user    = factory.SubFactory(UserFactory)
     topic   = factory.SubFactory(TopicFactory)
     title   = factory.Faker('text', max_nb_chars=50)
-    content = factory.Faker('text', max_nb_chars=140)
+    content = factory.Faker('text')
 
 
 class CommentFactory(factory.django.DjangoModelFactory):
@@ -53,4 +53,4 @@ class CommentFactory(factory.django.DjangoModelFactory):
 
     user    = factory.SubFactory(UserFactory)
     thread  = factory.SubFactory(ThreadFactory)
-    content = factory.Faker('text')
+    content = factory.Faker('text', max_nb_chars=140)
